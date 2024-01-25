@@ -8,9 +8,26 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Reference",
+"class": "PlayerModel",
+"language": "GDScript",
+"path": "res://src/Modules/Player/Model/player_model.gd"
+}, {
+"base": "Reference",
+"class": "PlayerPresenter",
+"language": "GDScript",
+"path": "res://src/Modules/Player/Presenter/player_presenter.gd"
+} ]
+_global_script_class_icons={
+"PlayerModel": "",
+"PlayerPresenter": ""
+}
+
 [application]
 
 config/name="RogueTank"
+run/main_scene="res://src/Levels/TestLevel/View/TestArea.tscn"
 config/icon="res://icon.png"
 
 [display]
