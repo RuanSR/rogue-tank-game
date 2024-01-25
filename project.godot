@@ -12,12 +12,12 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "PlayerModel",
 "language": "GDScript",
-"path": "res://src/Modules/Player/Model/player_model.gd"
+"path": "res://src/Modules/PlayerTank/Model/player_model.gd"
 }, {
 "base": "Reference",
 "class": "PlayerPresenter",
 "language": "GDScript",
-"path": "res://src/Modules/Player/Presenter/player_presenter.gd"
+"path": "res://src/Modules/PlayerTank/Presenter/player_presenter.gd"
 } ]
 _global_script_class_icons={
 "PlayerModel": "",
@@ -29,6 +29,14 @@ _global_script_class_icons={
 config/name="RogueTank"
 run/main_scene="res://src/Levels/TestLevel/View/TestArea.tscn"
 config/icon="res://icon.png"
+
+[debug]
+
+gdscript/completion/autocomplete_setters_and_getters=true
+gdscript/warnings/unused_class_variable=true
+gdscript/warnings/unsafe_property_access=true
+gdscript/warnings/unsafe_method_access=true
+gdscript/warnings/unsafe_cast=true
 
 [display]
 
