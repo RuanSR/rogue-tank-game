@@ -9,3 +9,6 @@ func _init(tank_bullet_view: Area2D) -> void:
 
 func on_fire(delta: float) -> void:
 	tank_bullet_view.translate(tank_bullet_model.bullet_direction * tank_bullet_model.bullet_velocity * delta)
+
+func add_in_group_list(group_name: String):
+	tank_bullet_view.add_to_group(group_name)
