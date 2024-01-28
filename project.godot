@@ -10,6 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Reference",
+"class": "CommonPlayer",
+"language": "GDScript",
+"path": "res://src/Modules/PlayerTank/@Shared/common_player.gd"
+}, {
+"base": "Reference",
 "class": "PlayerModel",
 "language": "GDScript",
 "path": "res://src/Modules/PlayerTank/Model/player_tank_model.gd"
@@ -30,6 +35,7 @@ _global_script_classes=[ {
 "path": "res://src/Modules/PlayerTank/Presenter/tank_bullet_presenter.gd"
 } ]
 _global_script_class_icons={
+"CommonPlayer": "",
 "PlayerModel": "",
 "PlayerPresenter": "",
 "TankBulletModel": "",

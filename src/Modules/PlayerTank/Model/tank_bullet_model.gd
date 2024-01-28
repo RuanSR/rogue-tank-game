@@ -12,11 +12,6 @@ func _init(bullet_collision_shape: CollisionShape2D, bullet_sprite: Sprite, bull
 	self.bullet_collision_shape = bullet_collision_shape
 	self.bullet_sprite = bullet_sprite
 	self.bullet_visibility_notifier = bullet_visibility_notifier
-	self.bullet_direction = bullet_direction
 
-func set_bullet_direction(direction: Vector2) -> void:
-	bullet_direction = direction
-	print(direction)
-
-#func get_bullet_direction() -> Vector2:
-#	return bullet_direction
+func set_bullet_direction(new_direction: Vector2) -> void:
+	bullet_direction = new_direction

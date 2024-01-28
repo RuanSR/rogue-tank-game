@@ -1,24 +1,21 @@
 extends Area2D
 
-var tank_bullet_presenter: TankBulletPresenter
+var _presenter: TankBulletPresenter
 
-var enums = preload("res://src/Modules/PlayerTank/@Shared/enums.gd")
+var _common_player: CommonPlayer
 
 func init(bullet_direction: Vector2):
-	_set_node_config()
-	tank_bullet_presenter = preload("res://src/Modules/PlayerTank/Presenter/tank_bullet_presenter.gd").new(self, bullet_direction)
+	_common_player = preload("res://src/Modules/PlayerTank/@Shared/common_player.gd").new()
+	_presenter = preload("res://src/Modules/PlayerTank/Presenter/tank_bullet_presenter.gd").new(self, bullet_direction)
+	
+	_presenter._set_node_config()
 
 func _ready() -> void:
-	tank_bullet_presenter.add_in_group_list(enums.Barrel_Bullet_State_Group.CANNON_BULLETS)
+	_presenter.add_in_group_list(_common_player.Barrel_Bullet_State_Group.CANNON_BULLETS)
  
 func _process(delta: float) -> void:
-	tank_bullet_presenter.on_fire()
+	_presenter.on_fire()
 
 func _on_BulletVisibilityNotifier2D_screen_exited():
 	queue_free()
 
-func _set_node_config() -> void:
-	var default_rotation_degrees = 90
-	
-	$BulletCollisionShape2D.set_rotation_degrees(90)
-	$BulletSprite2D.set_rotation_degrees(90)
