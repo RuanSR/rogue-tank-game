@@ -1,7 +1,7 @@
 class_name PlayerModel
 
 var speed: int = 100
-var shot_limit: int = 3
+var shot_limit: int = 10
 
 var tank_body_collision_poly: CollisionPolygon2D
 var tank_body_sprite: Sprite
@@ -15,4 +15,5 @@ func _init(tank_body_collision_poly: CollisionPolygon2D, tank_body_sprite: Sprit
 	self.tank_barrel_node = tank_barrel_node
 	self.bullet_muzzle_position = bullet_muzzle_position
 	self.tank_barrel_sprite = tank_barrel_sprite
+
 

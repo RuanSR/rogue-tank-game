@@ -1,7 +1,6 @@
 class_name PlayerPresenter
 
 var _view: KinematicBody2D
-var _prefab_bullet: PackedScene
 
 var _model: PlayerModel
 
@@ -9,18 +8,16 @@ var _common
 
 func _init(tank_view: KinematicBody2D):
 	_common = load("res://src/Modules/PlayerTank/@Shared/common_player.gd").new()
-	_prefab_bullet = preload("res://src/Modules/PlayerTank/View/TankBullet.tscn")
 	
-	var tank_body_collision_poly: CollisionPolygon2D = tank_view.get_node("TankBodyCollisionPoly2D")
-	var tank_body_sprite: Sprite = tank_view.get_node("TankBodySprite")
-	var tank_barrel_node: Node2D = tank_view.get_node("TankBarrelNode2D")
-	var bullet_muzzle_position: Position2D = tank_view.get_node("TankBarrelNode2D/BulletMuzzlePosition2D")
-	var tank_barrel_sprite: Sprite = tank_view.get_node("TankBarrelNode2D/TankBarrelSprite")
+	var tank_body_collision_poly: CollisionPolygon2D = tank_view.TankBodyCollisionPoly2D
+	var tank_body_sprite: Sprite = tank_view.TankBodySprite
+	var tank_barrel_node: Node2D = tank_view.TankBarrelNode2D
+	var bullet_muzzle_position: Position2D = tank_view.BulletMuzzlePosition2D
+	var tank_barrel_sprite: Sprite = tank_view.TankBarrelSprite
 	
 	_model = preload("res://src/Modules/PlayerTank/Model/player_tank_model.gd").new(tank_body_collision_poly, tank_body_sprite, tank_barrel_node, bullet_muzzle_position, tank_barrel_sprite)
 	
 	self._view = tank_view
-
 func on_move() -> void:
 
 	var delta := _view.get_process_delta_time()
@@ -49,8 +46,8 @@ func on_shoot() -> void:
 		if (_is_shot_limit_reachead()):
 			return
 		
-		var bullet: Area2D = _prefab_bullet.instance()
-		var muzzle: Position2D = _view.get_node("TankBarrelNode2D/BulletMuzzlePosition2D")
+		var bullet: Area2D = _view._prefab_bullet.instance()
+		var muzzle: Position2D = _model.bullet_muzzle_position
 		
 		bullet.init(Vector2( cos(_view.global_rotation), sin(_view.global_rotation) ).normalized())
 		
