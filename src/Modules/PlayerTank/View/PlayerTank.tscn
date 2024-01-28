@@ -15,9 +15,8 @@ texture = ExtResource( 3 )
 
 [node name="TankBarrelNode2D" type="Node2D" parent="."]
 
+[node name="BulletMuzzlePosition2D" type="Position2D" parent="TankBarrelNode2D"]
+
 [node name="TankBarrelSprite" type="Sprite" parent="TankBarrelNode2D"]
 texture = ExtResource( 1 )
 offset = Vector2( 0, -9 )
-
-[node name="BulletMuzzlePosition2D" type="Position2D" parent="TankBarrelNode2D"]
-position = Vector2( 0, -32 )

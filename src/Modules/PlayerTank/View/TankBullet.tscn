@@ -17,7 +17,7 @@ shape = SubResource( 1 )
 texture = ExtResource( 1 )
 
 [node name="BulletVisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
-position = Vector2( 0, -3.45707e-07 )
-scale = Vector2( 0.6, 0.8 )
+position = Vector2( -5.96046e-08, 5.96046e-08 )
+scale = Vector2( 0.4, 0.3 )
 
 [connection signal="screen_exited" from="BulletVisibilityNotifier2D" to="." method="_on_BulletVisibilityNotifier2D_screen_exited"]
