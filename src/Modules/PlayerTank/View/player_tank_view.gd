@@ -8,6 +8,8 @@ onready var TankBodySprite: Sprite = $TankBodySprite
 onready var TankBarrelNode2D: Node2D = $TankBarrelNode2D
 onready var BulletMuzzlePosition2D: Position2D = $TankBarrelNode2D/BulletMuzzlePosition2D
 onready var TankBarrelSprite: Sprite = $TankBarrelNode2D/TankBarrelSprite
+onready var BulletShotSprite: Sprite = $TankBarrelNode2D/BulletShotSprite
+onready var BulletShotAnimationPlayer: AnimationPlayer = $TankBarrelNode2D/BulletShotAnimationPlayer
 
 
 func _ready():

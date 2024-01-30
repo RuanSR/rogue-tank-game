@@ -14,8 +14,10 @@ func _init(tank_view: KinematicBody2D):
 	var tank_barrel_node: Node2D = tank_view.TankBarrelNode2D
 	var bullet_muzzle_position: Position2D = tank_view.BulletMuzzlePosition2D
 	var tank_barrel_sprite: Sprite = tank_view.TankBarrelSprite
+	var bullet_shot_sprite: Sprite = tank_view.BulletShotSprite
+	var bullet_shot_animation_player: AnimationPlayer = tank_view.BulletShotAnimationPlayer
 	
-	_model = preload("res://src/Modules/PlayerTank/Model/player_tank_model.gd").new(tank_body_collision_poly, tank_body_sprite, tank_barrel_node, bullet_muzzle_position, tank_barrel_sprite)
+	_model = preload("res://src/Modules/PlayerTank/Model/player_tank_model.gd").new(tank_body_collision_poly, tank_body_sprite, tank_barrel_node, bullet_muzzle_position, tank_barrel_sprite, bullet_shot_sprite, bullet_shot_animation_player)
 	
 	self._view = tank_view
 func on_move() -> void:
@@ -54,6 +56,8 @@ func on_shoot() -> void:
 		bullet.global_position = muzzle.global_position
 
 		_view.get_parent().add_child(bullet)
+		
+		_model.bullet_shot_animation_player.play("on_fire")
 	
 
 func _is_shot_limit_reachead() -> bool:
@@ -72,3 +76,6 @@ func _set_node_config() -> void:
 	_model.tank_body_sprite.set_rotation_degrees(_common.DEFAULT_ROTATION_DEGREES)
 	_model.tank_barrel_sprite.set_rotation_degrees(_common.DEFAULT_ROTATION_DEGREES)
 	_model.bullet_muzzle_position.set_position(Vector2(30, 0))
+	
+	_model.bullet_shot_sprite.set_position(Vector2(37, 0))
+	_model.bullet_shot_sprite.set_rotation_degrees(-90)

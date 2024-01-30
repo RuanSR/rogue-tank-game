@@ -1,8 +1,90 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/Modules/PlayerTank/@Assets/barrel/tankDark_barrel1_outline.png" type="Texture" id=1]
 [ext_resource path="res://src/Modules/PlayerTank/View/player_tank_view.gd" type="Script" id=2]
 [ext_resource path="res://src/Modules/PlayerTank/@Assets/tank_body/tankBody_blue_outline.png" type="Texture" id=3]
+[ext_resource path="res://src/Modules/PlayerTank/@Assets/shot/shotLarge.png" type="Texture" id=4]
+[ext_resource path="res://src/Modules/PlayerTank/@Assets/shot/shotRed.png" type="Texture" id=5]
+[ext_resource path="res://src/Modules/PlayerTank/@Assets/shot/shotOrange.png" type="Texture" id=6]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("BulletShotSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ ExtResource( 4 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("BulletShotSprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -36 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("BulletShotSprite:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "on_fire"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("BulletShotSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 4 ), ExtResource( 6 ), ExtResource( 5 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("BulletShotSprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("BulletShotSprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 32, 0 ), Vector2( 34, 0 ), Vector2( 42, 0 ) ]
+}
 
 [node name="PlayerTank" type="KinematicBody2D"]
 script = ExtResource( 2 )
@@ -20,3 +102,13 @@ texture = ExtResource( 3 )
 [node name="TankBarrelSprite" type="Sprite" parent="TankBarrelNode2D"]
 texture = ExtResource( 1 )
 offset = Vector2( 0, -9 )
+
+[node name="BulletShotSprite" type="Sprite" parent="TankBarrelNode2D"]
+position = Vector2( 0, -36 )
+rotation = -1.5708
+texture = ExtResource( 4 )
+
+[node name="BulletShotAnimationPlayer" type="AnimationPlayer" parent="TankBarrelNode2D"]
+playback_speed = 2.0
+anims/RESET = SubResource( 1 )
+anims/on_fire = SubResource( 2 )
