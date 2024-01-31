@@ -8,7 +8,7 @@
 [ext_resource path="res://src/Modules/PlayerTank/@Assets/shot/shotOrange.png" type="Texture" id=6]
 
 [sub_resource type="Animation" id=1]
-length = 0.001
+length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("BulletShotSprite:texture")
 tracks/0/interp = 1
@@ -104,8 +104,6 @@ texture = ExtResource( 1 )
 offset = Vector2( 0, -9 )
 
 [node name="BulletShotSprite" type="Sprite" parent="TankBarrelNode2D"]
-position = Vector2( 0, -36 )
-rotation = -1.5708
 texture = ExtResource( 4 )
 
 [node name="BulletShotAnimationPlayer" type="AnimationPlayer" parent="TankBarrelNode2D"]

@@ -19,5 +19,3 @@ func _init(tank_body_collision_poly: CollisionPolygon2D, tank_body_sprite: Sprit
 	self.tank_barrel_sprite = tank_barrel_sprite
 	self.bullet_shot_sprite = bullet_shot_sprite
 	self.bullet_shot_animation_player = bullet_shot_animation_player
-
-
