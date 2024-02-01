@@ -12,7 +12,7 @@ func _ready() -> void:
 	_presenter = TankBulletPresenter.new(self, self.bullet_direction)
 	
 	_presenter.add_in_group_list(_common_player.Barrel_Bullet_State_Group.CANNON_BULLETS)
-	_presenter._set_node_config()
+	_presenter.set_node_config()
  
 func _process(delta: float) -> void:
 	_presenter.on_fire()

@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-onready var _prefab_bullet: PackedScene = preload("res://src/Modules/PlayerTank/View/TankBullet.tscn")
+const _prefab_bullet: PackedScene = preload("res://src/Modules/PlayerTank/View/TankBullet.tscn")
 
 var _presenter: PlayerPresenter
 
@@ -16,7 +16,7 @@ onready var BulletShotAnimationPlayer: AnimationPlayer = $TankBarrelNode2D/Bulle
 func _ready():
 	_presenter = PlayerPresenter.new(self)
 	
-	_presenter._set_node_config()
+	_presenter.set_node_config()
 
 func _process(_delta):
 	

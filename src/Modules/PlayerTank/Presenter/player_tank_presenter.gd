@@ -28,7 +28,19 @@ func _is_shot_limit_reachead() -> bool:
 		
 	return !allow_shot
 
-func _set_node_config() -> void:
+func _create_and_add_new_bullet() -> void:
+	var bullet: Area2D = _view._prefab_bullet.instance()
+	var muzzle: Position2D = _model.bullet_muzzle_position
+	
+	bullet.init(Vector2( cos(_view.global_rotation), sin(_view.global_rotation) ).normalized())
+	
+	bullet.global_position = muzzle.global_position
+
+	_view.get_parent().add_child(bullet)
+	
+	_model.bullet_shot_animation_player.play("on_fire")
+
+func set_node_config() -> void:
 	
 	_model.tank_body_sprite.set_rotation_degrees(_common.DEFAULT_ROTATION_DEGREES)
 	_model.tank_barrel_sprite.set_rotation_degrees(_common.DEFAULT_ROTATION_DEGREES)
@@ -67,13 +79,4 @@ func on_shoot() -> void:
 		if (_is_shot_limit_reachead()):
 			return
 		
-		var bullet: Area2D = _view._prefab_bullet.instance()
-		var muzzle: Position2D = _model.bullet_muzzle_position
-		
-		bullet.init(Vector2( cos(_view.global_rotation), sin(_view.global_rotation) ).normalized())
-		
-		bullet.global_position = muzzle.global_position
-
-		_view.get_parent().add_child(bullet)
-		
-		_model.bullet_shot_animation_player.play("on_fire")
+		_create_and_add_new_bullet()

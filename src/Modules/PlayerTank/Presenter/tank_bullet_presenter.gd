@@ -16,6 +16,6 @@ func on_fire() -> void:
 func add_in_group_list(group_name: String):
 	_view.add_to_group(group_name)
 
-func _set_node_config() -> void:
+func set_node_config() -> void:
 	_model.bullet_collision_shape.set_rotation_degrees(_common.DEFAULT_ROTATION_DEGREES)
 	_model.bullet_sprite.set_rotation_degrees(_common.DEFAULT_ROTATION_DEGREES)
