@@ -104,6 +104,7 @@ texture = ExtResource( 1 )
 offset = Vector2( 0, -9 )
 
 [node name="BulletShotSprite" type="Sprite" parent="TankBarrelNode2D"]
+position = Vector2( 0, -36 )
 texture = ExtResource( 4 )
 
 [node name="BulletShotAnimationPlayer" type="AnimationPlayer" parent="TankBarrelNode2D"]
