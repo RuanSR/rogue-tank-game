@@ -19,12 +19,7 @@ func _ready():
 	_presenter = PlayerPresenter.new(self)
 	
 	_presenter.set_node_config()
-	
-	print("Selected Body: ", TankBodySkinManager.selected_texture_name)
-	TankBodySprite.texture = TankBodySkinManager.selected_texture
-	
-	print("Selected Barrel: ", TankBarrelSkinManager.selected_texture_name)
-	TankBarrelSprite.texture = TankBarrelSkinManager.selected_texture
+	_presenter.load_selected_texture()
 	
 	
 func _process(_delta):
@@ -32,10 +27,3 @@ func _process(_delta):
 	_presenter.on_move()
 	_presenter.on_shoot()
 	_presenter.look_at_mouse()
-
-func load_ressource_path(obj, type) -> Dictionary:
-	if(typeof(obj) == typeof(type)):
-		print("o tipo ", typeof(obj), " eh do mesmo tipo de ", typeof(type))
-		return {}
-	print("o tipo ", typeof(obj), " nao eh do mesmo tipo de ", typeof(type))
-	return {}
