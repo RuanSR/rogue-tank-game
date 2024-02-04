@@ -20,8 +20,11 @@ func _ready():
 	
 	_presenter.set_node_config()
 	
-	TankBodySprite.texture = TankBodySkinManager.selected_skin
-	TankBarrelSprite.texture = TankBarrelSkinManager.selected_skin
+	print("Selected Body: ", TankBodySkinManager.selected_texture_name)
+	TankBodySprite.texture = TankBodySkinManager.selected_texture
+	
+	print("Selected Barrel: ", TankBarrelSkinManager.selected_texture_name)
+	TankBarrelSprite.texture = TankBarrelSkinManager.selected_texture
 	
 	
 func _process(_delta):

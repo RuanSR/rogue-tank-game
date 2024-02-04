@@ -92,8 +92,6 @@ script = ExtResource( 2 )
 
 [node name="TankBodySkinManager" parent="." instance=ExtResource( 7 )]
 path_skins = "res://src/Modules/PlayerTank/@Assets/tank_body/"
-file_extension = "png"
-skin_index = 2
 
 [node name="TankBodyCollisionPoly2D" type="CollisionPolygon2D" parent="."]
 polygon = PoolVector2Array( -15, -20, -21, -15, -21, 13, -14, 19, -10, 21, 10, 21, 15, 18, 21, 14, 21, -15, 18, -19, 13, -21, -14, -21 )
@@ -105,6 +103,7 @@ texture = ExtResource( 3 )
 
 [node name="BarrelSkinManager" parent="TankBarrelNode2D" instance=ExtResource( 7 )]
 path_skins = "res://src/Modules/PlayerTank/@Assets/barrel/"
+file_extension = "png"
 
 [node name="BulletMuzzlePosition2D" type="Position2D" parent="TankBarrelNode2D"]
 

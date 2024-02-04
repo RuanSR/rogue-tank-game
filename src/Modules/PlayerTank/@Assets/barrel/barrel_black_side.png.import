@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/barrelBlack_side.png-19dff515546a8591a909e37bd74e7220.stex"
+path="res://.import/barrel_black_side.png-20a866b60e02dd81ef33aeb59436fef5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/Modules/PlayerTank/@Assets/barrel/barrelBlack_side.png"
-dest_files=[ "res://.import/barrelBlack_side.png-19dff515546a8591a909e37bd74e7220.stex" ]
+source_file="res://src/Modules/PlayerTank/@Assets/barrel/barrel_black_side.png"
+dest_files=[ "res://.import/barrel_black_side.png-20a866b60e02dd81ef33aeb59436fef5.stex" ]
 
 [params]
 
