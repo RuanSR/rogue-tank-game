@@ -4,7 +4,6 @@ const _prefab_bullet: PackedScene = preload("res://src/Modules/PlayerTank/View/T
 
 var _presenter: PlayerPresenter
 
-
 onready var TankBodyCollisionPoly2D: CollisionPolygon2D = $TankBodyCollisionPoly2D
 onready var TankBodySprite: Sprite = $TankBodySprite
 onready var TankBarrelNode2D: Node2D = $TankBarrelNode2D
@@ -19,11 +18,17 @@ func _ready():
 	_presenter = PlayerPresenter.new(self)
 	
 	_presenter.set_node_config()
-	_presenter.load_selected_texture()
 	
-	
+	load_selected_texture()
+
 func _process(_delta):
 	
 	_presenter.on_move()
 	_presenter.on_shoot()
 	_presenter.look_at_mouse()
+
+func load_selected_texture() -> void:
+	print("Selected Body: ", TankBodySkinManager.selected_texture_name)
+	TankBodySprite.texture = TankBodySkinManager.selected_texture
+	print("Selected Barrel: ", TankBarrelSkinManager.selected_texture_name)
+	TankBarrelSprite.texture = TankBarrelSkinManager.selected_texture

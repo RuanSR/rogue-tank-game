@@ -15,10 +15,8 @@ func _init(tank_view: KinematicBody2D):
 	var tank_barrel_sprite: Sprite = tank_view.TankBarrelSprite
 	var bullet_shot_sprite: Sprite = tank_view.BulletShotSprite
 	var bullet_shot_animation_player: AnimationPlayer = tank_view.BulletShotAnimationPlayer
-	var tank_body_skin_manager: Node2D = tank_view.TankBodySkinManager
-	var tank_barrel_skin_manager: Node2D = tank_view.TankBarrelSkinManager
 	
-	_model = PlayerModel.new(tank_body_collision_poly, tank_body_sprite, tank_barrel_node, bullet_muzzle_position, tank_barrel_sprite, bullet_shot_sprite, bullet_shot_animation_player, tank_body_skin_manager, tank_barrel_skin_manager)
+	_model = PlayerModel.new(tank_body_collision_poly, tank_body_sprite, tank_barrel_node, bullet_muzzle_position, tank_barrel_sprite, bullet_shot_sprite, bullet_shot_animation_player)
 	
 	self._view = tank_view
 
@@ -82,10 +80,3 @@ func on_shoot() -> void:
 			return
 		
 		_create_and_add_new_bullet()
-
-func load_selected_texture() -> void:
-	print("Selected Body: ", _model.tank_body_skin_manager.selected_texture_name)
-	_model.tank_body_sprite = _model.tank_body_skin_manager.selected_texture
-	print("Selected Barrel: ", _model.tank_barrel_skin_manager.selected_texture_name)
-	_model.tank_barrel_sprite = _model.tank_barrel_skin_manager.selected_texture
-	
