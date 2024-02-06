@@ -88,31 +88,34 @@ tracks/2/keys = {
 }
 
 [node name="PlayerTank" type="KinematicBody2D"]
+rotation = -134.129
 script = ExtResource( 2 )
 
 [node name="TankBodySkinManager" parent="." instance=ExtResource( 7 )]
-path_skins = "res://src/Modules/PlayerTank/@Assets/tank_body/"
+selected_index_texture = 0
 
 [node name="TankBodyCollisionPoly2D" type="CollisionPolygon2D" parent="."]
 polygon = PoolVector2Array( -15, -20, -21, -15, -21, 13, -14, 19, -10, 21, 10, 21, 15, 18, 21, 14, 21, -15, 18, -19, 13, -21, -14, -21 )
 
 [node name="TankBodySprite" type="Sprite" parent="."]
+rotation = 1.5708
 texture = ExtResource( 3 )
 
 [node name="TankBarrelNode2D" type="Node2D" parent="."]
 
 [node name="BarrelSkinManager" parent="TankBarrelNode2D" instance=ExtResource( 7 )]
-path_skins = "res://src/Modules/PlayerTank/@Assets/barrel/"
-file_extension = "png"
 
 [node name="BulletMuzzlePosition2D" type="Position2D" parent="TankBarrelNode2D"]
+position = Vector2( 30, 0 )
 
 [node name="TankBarrelSprite" type="Sprite" parent="TankBarrelNode2D"]
+rotation = 1.5708
 texture = ExtResource( 1 )
 offset = Vector2( 0, -9 )
 
 [node name="BulletShotSprite" type="Sprite" parent="TankBarrelNode2D"]
 position = Vector2( 0, -36 )
+rotation = -1.5708
 texture = ExtResource( 4 )
 
 [node name="BulletShotAnimationPlayer" type="AnimationPlayer" parent="TankBarrelNode2D"]

@@ -1,8 +1,40 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/Modules/PlayerTank/View/PlayerTank.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/Modules/PlayerTank/@Assets/tank_body/tankBody_darkLarge_outline.png" type="Texture" id=2]
+[ext_resource path="res://src/Modules/PlayerTank/@Assets/barrel/barrel_black_side.png" type="Texture" id=3]
+[ext_resource path="res://src/Modules/PlayerTank/@Assets/barrel/barrelBlack_top.png" type="Texture" id=4]
+[ext_resource path="res://src/Modules/PlayerTank/@Assets/tank_body/tankBody_green_outline.png" type="Texture" id=5]
 
 [node name="TestArea" type="Node2D"]
 
 [node name="Tank" parent="." instance=ExtResource( 1 )]
-position = Vector2( 495, 285 )
+position = Vector2( 337.467, 328.52 )
+rotation = -181.782
+
+[node name="TankBodySprite" parent="Tank" index="2"]
+texture = ExtResource( 5 )
+
+[node name="BarrelSkinManager" parent="Tank/TankBarrelNode2D" index="0"]
+path_skins = "res://src/Modules/PlayerTank/@Assets/barrel/"
+selected_index_texture = 0
+
+[node name="TankBarrelSprite" parent="Tank/TankBarrelNode2D" index="2"]
+texture = ExtResource( 4 )
+
+[node name="PlayerTank" parent="." instance=ExtResource( 1 )]
+position = Vector2( 246.467, 333.52 )
+rotation = -131.854
+
+[node name="TankBodySprite" parent="PlayerTank" index="2"]
+texture = ExtResource( 2 )
+
+[node name="BarrelSkinManager" parent="PlayerTank/TankBarrelNode2D" index="0"]
+path_skins = "res://src/Modules/PlayerTank/@Assets/barrel/"
+selected_index_texture = 2
+
+[node name="TankBarrelSprite" parent="PlayerTank/TankBarrelNode2D" index="2"]
+texture = ExtResource( 3 )
+
+[editable path="Tank"]
+[editable path="PlayerTank"]

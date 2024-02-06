@@ -2,7 +2,9 @@ extends Node2D
 
 export var path_skins: String
 export var file_extension: String = ".png" setget set_file_extension
-export var texture_index: int = 0 setget set_texture_index
+export var selected_index_texture: int = -1 setget set_texture_index
+
+export var default_texture: Texture
 
 var selected_texture: Texture
 var selected_texture_name: String
@@ -10,11 +12,12 @@ var selected_texture_name: String
 var _list_of_paths: Array = []
 var _list_of_name_textures: Array = []
 
+
 func _ready():
 	_dynamic_load_skins(path_skins)
 	
-	selected_texture = load(_list_of_paths[texture_index])
-	selected_texture_name = _list_of_name_textures[texture_index]
+	_set_selected_texture()
+	_set_selected_texture_name()
 
 func _dynamic_load_skins(path: String) -> void:
 	var directory = Directory.new()
@@ -32,7 +35,6 @@ func _dynamic_load_skins(path: String) -> void:
 	else:
 		print("An error occurred when trying to access the path.")
 
-
 func _set_list_of_name_textures(file_name: String) -> void:
 	var parsed_file_name = file_name.replace("_", " ").replace(".png", "")
 
@@ -46,9 +48,23 @@ func _file_extension_valid_parser(extension_value: String) -> String:
 
 func set_texture_index(value: int = 0) -> void:
 	if (value < 0):
-		texture_index = 0
+		selected_index_texture = 0
 	
-	texture_index = value 
+	selected_index_texture = value
 
 func set_file_extension(value: String) -> void:
 	file_extension = _file_extension_valid_parser(value)
+
+func _set_selected_texture() -> void:
+	if (selected_index_texture == -1):
+		selected_texture = default_texture
+		return
+	
+	selected_texture = load(_list_of_paths[selected_index_texture])
+
+func _set_selected_texture_name() -> void:
+	if (selected_index_texture == -1):
+		selected_texture_name = default_texture.get_name()
+		return
+	selected_texture_name = _list_of_name_textures[selected_index_texture]
+

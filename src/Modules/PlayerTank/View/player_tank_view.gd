@@ -1,3 +1,4 @@
+tool
 extends KinematicBody2D
 
 const _prefab_bullet: PackedScene = preload("res://src/Modules/PlayerTank/View/TankBullet.tscn")
@@ -11,21 +12,31 @@ onready var BulletMuzzlePosition2D: Position2D = $TankBarrelNode2D/BulletMuzzleP
 onready var TankBarrelSprite: Sprite = $TankBarrelNode2D/TankBarrelSprite
 onready var BulletShotSprite: Sprite = $TankBarrelNode2D/BulletShotSprite
 onready var BulletShotAnimationPlayer: AnimationPlayer = $TankBarrelNode2D/BulletShotAnimationPlayer
-onready var TankBodySkinManager: Node2D = $TankBodySkinManager
-onready var TankBarrelSkinManager: Node2D = $TankBarrelNode2D/BarrelSkinManager
+onready var TankBodySkinManager: Node = $TankBodySkinManager
+onready var TankBarrelSkinManager: Node = $TankBarrelNode2D/BarrelSkinManager
 
 func _ready():
-	_presenter = PlayerPresenter.new(self)
 	
+	_presenter = PlayerPresenter.new(self)
 	_presenter.set_node_config()
 	
 	load_selected_texture()
 
 func _process(_delta):
 	
+	if (_is_editor_tool()):
+		return
+
 	_presenter.on_move()
 	_presenter.on_shoot()
 	_presenter.look_at_mouse()
+
+func _draw():
+	if (_is_editor_tool()):
+		update()
+
+func _is_editor_tool() -> bool:
+	return Engine.editor_hint
 
 func load_selected_texture() -> void:
 	print("Selected Body: ", TankBodySkinManager.selected_texture_name)
