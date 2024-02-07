@@ -6,6 +6,8 @@ var _model: PlayerModel
 
 var _common: CommonPlayer = CommonPlayer.new()
 
+var _self_ref: String
+
 func _init(tank_view: KinematicBody2D):
 
 	var tank_body_collision_poly: CollisionPolygon2D = tank_view.TankBodyCollisionPoly2D
@@ -19,11 +21,13 @@ func _init(tank_view: KinematicBody2D):
 	_model = PlayerModel.new(tank_body_collision_poly, tank_body_sprite, tank_barrel_node, bullet_muzzle_position, tank_barrel_sprite, bullet_shot_sprite, bullet_shot_animation_player)
 	
 	self._view = tank_view
+	
+	_self_ref = str(self._view)
 
 func _is_shot_limit_reachead() -> bool:
 	var allow_shot = true
-
-	if (_view.get_tree().get_nodes_in_group(_common.Barrel_Bullet_State_Group.CANNON_BULLETS).size() >= _model.shot_limit):
+	
+	if (_view.get_tree().get_nodes_in_group(_common.Barrel_Bullet_State_Group.CANNON_BULLETS + _self_ref).size() >= _model.shot_limit):
 		return allow_shot
 		
 	return !allow_shot
@@ -32,7 +36,9 @@ func _create_and_add_new_bullet() -> void:
 	var bullet: Area2D = _view._prefab_bullet.instance()
 	var muzzle: Position2D = _model.bullet_muzzle_position
 	
-	bullet.init(Vector2( cos(_view.global_rotation), sin(_view.global_rotation) ).normalized())
+	var direction: Vector2 = Vector2( cos(_view.global_rotation), sin(_view.global_rotation) ).normalized()
+	
+	bullet.init(direction, _self_ref)
 	
 	bullet.global_position = muzzle.global_position
 

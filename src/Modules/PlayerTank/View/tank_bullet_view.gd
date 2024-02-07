@@ -7,11 +7,12 @@ onready var BulletCollisionShape2D: CollisionShape2D = $BulletCollisionShape2D
 onready var BulletSprite2D: Sprite = $BulletSprite2D
 onready var BulletVisibilityNotifier2D: VisibilityNotifier2D = $BulletVisibilityNotifier2D
 onready var bullet_direction: Vector2
+onready var parent_reference: String
 
 func _ready() -> void:
 	_presenter = TankBulletPresenter.new(self, self.bullet_direction)
 	
-	_presenter.add_in_group_list(_common_player.Barrel_Bullet_State_Group.CANNON_BULLETS)
+	_presenter.add_in_group_list(_common_player.Barrel_Bullet_State_Group.CANNON_BULLETS+parent_reference)
 	_presenter.set_node_config()
  
 func _process(delta: float) -> void:
@@ -20,7 +21,8 @@ func _process(delta: float) -> void:
 func _on_BulletVisibilityNotifier2D_screen_exited():
 	queue_free()
 
-func init(bullet_direction: Vector2):
+func init(bullet_direction: Vector2, parent_reference: String):
 	_common_player = CommonPlayer.new()
 	self.bullet_direction = bullet_direction
+	self.parent_reference = parent_reference
 

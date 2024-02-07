@@ -39,7 +39,5 @@ func _is_editor_tool() -> bool:
 	return Engine.editor_hint
 
 func load_selected_texture() -> void:
-	print("Selected Body: ", TankBodySkinManager.selected_texture_name)
 	TankBodySprite.texture = TankBodySkinManager.selected_texture
-	print("Selected Barrel: ", TankBarrelSkinManager.selected_texture_name)
 	TankBarrelSprite.texture = TankBarrelSkinManager.selected_texture
