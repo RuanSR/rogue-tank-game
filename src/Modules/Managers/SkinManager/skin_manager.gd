@@ -4,7 +4,7 @@ export var path_skins: String
 export var file_extension: String = ".png" setget set_file_extension
 export var selected_index_texture: int = -1 setget set_texture_index
 
-export var default_texture: Texture
+export var _default_texture: Texture
 
 var selected_texture: Texture
 var selected_texture_name: String
@@ -57,14 +57,14 @@ func set_file_extension(value: String) -> void:
 
 func _set_selected_texture() -> void:
 	if (selected_index_texture == -1):
-		selected_texture = default_texture
+		selected_texture = _default_texture
 		return
 	
 	selected_texture = load(_list_of_paths[selected_index_texture])
 
 func _set_selected_texture_name() -> void:
 	if (selected_index_texture == -1):
-		selected_texture_name = default_texture.get_name()
+		selected_texture_name = "default texture"
 		return
 	selected_texture_name = _list_of_name_textures[selected_index_texture]
 
