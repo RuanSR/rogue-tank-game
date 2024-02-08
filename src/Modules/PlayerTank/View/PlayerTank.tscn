@@ -10,42 +10,6 @@
 
 [sub_resource type="Animation" id=1]
 length = 0.4
-tracks/0/type = "value"
-tracks/0/path = NodePath("BulletShotSprite:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ ExtResource( 4 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("BulletShotSprite:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 0, -36 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("BulletShotSprite:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ true ]
-}
 
 [sub_resource type="Animation" id=2]
 resource_name = "on_fire"
@@ -88,7 +52,6 @@ tracks/2/keys = {
 }
 
 [node name="PlayerTank" type="KinematicBody2D"]
-rotation = -134.129
 script = ExtResource( 2 )
 
 [node name="TankBodySkinManager" parent="." instance=ExtResource( 7 )]
@@ -114,10 +77,11 @@ texture = ExtResource( 1 )
 offset = Vector2( 0, -9 )
 
 [node name="BulletShotSprite" type="Sprite" parent="TankBarrelNode2D"]
-position = Vector2( 0, -36 )
+visible = false
+position = Vector2( 42, 0 )
 rotation = -1.5708
 z_index = 10
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 
 [node name="BulletShotAnimationPlayer" type="AnimationPlayer" parent="TankBarrelNode2D"]
 playback_speed = 2.0

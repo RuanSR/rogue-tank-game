@@ -45,8 +45,6 @@ func _create_and_add_new_bullet() -> void:
 	_view.get_parent().add_child(bullet)
 	
 	_model.bullet_shot_animation_player.play("on_fire")
-
-func set_node_config() -> void:
 	
 	_model.tank_body_sprite.set_rotation_degrees(_common.DEFAULT_ROTATION_DEGREES)
 	_model.tank_barrel_sprite.set_rotation_degrees(_common.DEFAULT_ROTATION_DEGREES)

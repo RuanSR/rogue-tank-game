@@ -1,6 +1,6 @@
 class_name TankBulletModel
 
-const bullet_velocity: int = 250
+const bullet_velocity: int = 400
 var bullet_direction: Vector2 = Vector2(0, -1) setget set_bullet_direction
 
 var bullet_collision_shape: CollisionShape2D

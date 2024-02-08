@@ -18,7 +18,6 @@ onready var TankBarrelSkinManager: Node = $TankBarrelNode2D/BarrelSkinManager
 func _ready():
 	
 	_presenter = PlayerPresenter.new(self)
-	_presenter.set_node_config()
 	
 	load_selected_texture()
 
