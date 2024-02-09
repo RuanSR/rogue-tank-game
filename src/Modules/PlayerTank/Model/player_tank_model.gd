@@ -1,6 +1,6 @@
 class_name PlayerModel
 
-var speed: int = 100
+var speed: int = 250
 var shot_limit: int = 5
 
 var tank_body_collision_poly: CollisionPolygon2D

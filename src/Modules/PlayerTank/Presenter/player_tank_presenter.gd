@@ -74,7 +74,7 @@ func on_move() -> void:
 	if(Input.is_action_pressed("ui_down")):
 		dir_y += 1;
 	
-	_view.translate(Vector2(dir_x, dir_y) * delta * _model.speed)
+	_view.move_and_slide(Vector2(dir_x, dir_y) * _model.speed)
 
 func on_shoot() -> void:
 	
