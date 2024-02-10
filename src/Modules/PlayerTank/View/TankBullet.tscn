@@ -1,8 +1,14 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://src/Modules/PlayerTank/@Assets/bullet/bulletRed2_outline.png" type="Texture" id=1]
 [ext_resource path="res://src/Modules/PlayerTank/View/tank_bullet_view.gd" type="Script" id=2]
 [ext_resource path="res://src/Modules/PlayerTank/@Assets/explosion/smokeWhite1.png" type="Texture" id=3]
+[ext_resource path="res://src/Modules/PlayerTank/@Assets/explosion/explosion2.png" type="Texture" id=4]
+[ext_resource path="res://src/Modules/PlayerTank/@Assets/explosion/explosion5.png" type="Texture" id=5]
+[ext_resource path="res://src/Modules/PlayerTank/@Assets/explosion/explosion1.png" type="Texture" id=6]
+[ext_resource path="res://src/Modules/PlayerTank/@Assets/explosion/explosion3.png" type="Texture" id=7]
+[ext_resource path="res://src/Modules/PlayerTank/@Assets/explosion/explosion4.png" type="Texture" id=8]
+[ext_resource path="res://src/Modules/PlayerTank/@Assets/explosion/explosionSmoke1.png" type="Texture" id=9]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 6.0
@@ -30,14 +36,71 @@ scale = 0.2
 scale_curve = SubResource( 5 )
 color_ramp = SubResource( 3 )
 
+[sub_resource type="Animation" id=7]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("BulletSelfDestructionSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ ExtResource( 9 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("BulletSelfDestructionSprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "explode"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("BulletSelfDestructionSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 6 ), ExtResource( 4 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 5 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("BulletSelfDestructionSprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
 [node name="TankBullet" type="Area2D"]
+collision_layer = 8
+collision_mask = 6
 script = ExtResource( 2 )
 
 [node name="BulletCollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
 shape = SubResource( 1 )
 
-[node name="BulletParticles2D" type="Particles2D" parent="."]
+[node name="BulletSmokeParticles2D" type="Particles2D" parent="."]
 position = Vector2( -10, 0 )
 amount = 15
 lifetime = 0.3
@@ -53,4 +116,13 @@ texture = ExtResource( 1 )
 position = Vector2( -5.96046e-08, 5.96046e-08 )
 scale = Vector2( 0.4, 0.3 )
 
+[node name="BulletSelfDestructionSprite" type="Sprite" parent="."]
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 9 )
+
+[node name="BulletSelfDestructionAnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 7 )
+anims/explode = SubResource( 8 )
+
+[connection signal="body_entered" from="." to="." method="_on_TankBullet_body_entered"]
 [connection signal="screen_exited" from="BulletVisibilityNotifier2D" to="." method="_on_BulletVisibilityNotifier2D_screen_exited"]
