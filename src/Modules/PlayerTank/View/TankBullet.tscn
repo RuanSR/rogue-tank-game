@@ -96,11 +96,11 @@ collision_layer = 8
 collision_mask = 6
 script = ExtResource( 2 )
 
-[node name="BulletCollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="BulletCollisionShape" type="CollisionShape2D" parent="."]
 rotation = 1.5708
 shape = SubResource( 1 )
 
-[node name="BulletSmokeParticles2D" type="Particles2D" parent="."]
+[node name="BulletSmokeParticles" type="Particles2D" parent="."]
 position = Vector2( -10, 0 )
 amount = 15
 lifetime = 0.3
@@ -108,11 +108,11 @@ local_coords = false
 process_material = SubResource( 6 )
 texture = ExtResource( 3 )
 
-[node name="BulletSprite2D" type="Sprite" parent="."]
+[node name="BulletSprite" type="Sprite" parent="."]
 rotation = 1.5708
 texture = ExtResource( 1 )
 
-[node name="BulletVisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+[node name="BulletVisibilityNotifier" type="VisibilityNotifier2D" parent="."]
 position = Vector2( -5.96046e-08, 5.96046e-08 )
 scale = Vector2( 0.4, 0.3 )
 
@@ -125,4 +125,4 @@ anims/RESET = SubResource( 7 )
 anims/explode = SubResource( 8 )
 
 [connection signal="body_entered" from="." to="." method="_on_TankBullet_body_entered"]
-[connection signal="screen_exited" from="BulletVisibilityNotifier2D" to="." method="_on_BulletVisibilityNotifier2D_screen_exited"]
+[connection signal="screen_exited" from="BulletVisibilityNotifier" to="." method="_on_BulletVisibilityNotifier2D_screen_exited"]

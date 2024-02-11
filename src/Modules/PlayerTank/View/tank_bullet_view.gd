@@ -3,17 +3,10 @@ extends Area2D
 var _presenter: TankBulletPresenter
 var _common_player: CommonPlayer
 
-onready var BulletCollisionShape2D: CollisionShape2D = $BulletCollisionShape2D
-onready var BulletSprite2D: Sprite = $BulletSprite2D
-onready var BulletVisibilityNotifier2D: VisibilityNotifier2D = $BulletVisibilityNotifier2D
-onready var BulletSmokeParticles2D: Particles2D = $BulletSmokeParticles2D
-onready var BulletSelfDestructionAnimationPlayer: AnimationPlayer = $BulletSelfDestructionAnimationPlayer
-
 onready var bullet_direction: Vector2
 onready var parent_reference: String
 onready var bullet_initial_position: Vector2 = global_position
 
-var live: bool = true
 
 func _ready() -> void:
 	_presenter = TankBulletPresenter.new(self, self.bullet_direction, global_position)
