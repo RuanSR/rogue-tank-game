@@ -2,15 +2,20 @@ class_name InjectModel
 
 const _models_dependency_injectable = {}
 
-static func load_model_dependency(viewer_node: Node, name_list_of_nodes_in_view: Array = []) -> void:
+static func _scan_nodes(node_tree)-> Array:
+	var name_list_of_nodes: Array = []
+
+	for node in node_tree.get_children():
+		name_list_of_nodes.append(node.get_name())
+		if (node.get_child_count() != 0):
+			name_list_of_nodes.append_array(_scan_nodes(node))
+	
+	return name_list_of_nodes
+
+static func load_model_dependency(viewer_node, name_list_of_nodes_in_view: Array = []) -> void:
 	var dependency_dictionary: Dictionary = {}
 	
-	var name_list_of_nodes: Array = []
-	
-	var all_nodes_in_node_parent = viewer_node.get_children()
-	for node in all_nodes_in_node_parent:
-		name_list_of_nodes.append(node.get_name())
-	
+	var name_list_of_nodes: Array =  _scan_nodes(viewer_node)
 	if (name_list_of_nodes_in_view.size() == 0):
 		for node_name in name_list_of_nodes:
 			dependency_dictionary.keys().append(node_name)

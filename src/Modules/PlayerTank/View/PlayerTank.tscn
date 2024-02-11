@@ -56,7 +56,7 @@ collision_mask = 6
 script = ExtResource( 2 )
 
 [node name="TankBodySkinManager" parent="." instance=ExtResource( 7 )]
-selected_index_texture = 1
+selected_index_texture = 5
 
 [node name="TankBodyCollisionPoly2D" type="CollisionPolygon2D" parent="."]
 polygon = PoolVector2Array( -15, -20, -21, -15, -21, 13, -14, 19, -10, 21, 10, 21, 15, 18, 21, 14, 21, -15, 18, -19, 13, -21, -14, -21 )
@@ -88,3 +88,9 @@ texture = ExtResource( 5 )
 playback_speed = 2.0
 anims/RESET = SubResource( 1 )
 anims/on_fire = SubResource( 2 )
+
+[node name="Node" type="Node" parent="TankBarrelNode2D"]
+
+[node name="Node2D" type="Node2D" parent="TankBarrelNode2D/Node"]
+
+[node name="Sprite" type="Sprite" parent="TankBarrelNode2D/Node/Node2D"]

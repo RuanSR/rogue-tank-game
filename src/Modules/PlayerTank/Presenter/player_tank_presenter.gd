@@ -9,20 +9,13 @@ var _common: CommonPlayer = CommonPlayer.new()
 var _self_ref: String
 
 func _init(tank_view: KinematicBody2D):
-
-	var tank_body_collision_poly: CollisionPolygon2D = tank_view.TankBodyCollisionPoly2D
-	var tank_body_sprite: Sprite = tank_view.TankBodySprite
-	var tank_barrel_node: Node2D = tank_view.TankBarrelNode2D
-	var bullet_muzzle_position: Position2D = tank_view.BulletMuzzlePosition2D
-	var tank_barrel_sprite: Sprite = tank_view.TankBarrelSprite
-	var bullet_shot_sprite: Sprite = tank_view.BulletShotSprite
-	var bullet_shot_animation_player: AnimationPlayer = tank_view.BulletShotAnimationPlayer
-	
-	_model = PlayerModel.new(tank_body_collision_poly, tank_body_sprite, tank_barrel_node, bullet_muzzle_position, tank_barrel_sprite, bullet_shot_sprite, bullet_shot_animation_player)
-	
 	self._view = tank_view
-	
+
 	_self_ref = str(self._view)
+	
+	InjectModel.load_model_dependency(self._view)
+
+	_model = PlayerModel.new()
 
 func _is_shot_limit_reachead() -> bool:
 	var allow_shot = true

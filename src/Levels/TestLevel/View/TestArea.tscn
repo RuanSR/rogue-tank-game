@@ -14,7 +14,7 @@ position = Vector2( 246.467, 333.52 )
 rotation = -131.854
 
 [node name="TankBodySkinManager" parent="PlayerTank" index="0"]
-selected_index_texture = 0
+selected_index_texture = 3
 
 [node name="TankBodySprite" parent="PlayerTank" index="2"]
 texture = ExtResource( 2 )
