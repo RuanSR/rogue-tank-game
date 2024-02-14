@@ -1,8 +1,6 @@
 tool
 extends KinematicBody2D
 
-const _prefab_bullet: PackedScene = preload("res://src/Modules/PlayerTank/View/TankBullet.tscn")
-
 var _presenter: PlayerPresenter
 
 func _ready():
@@ -28,5 +26,11 @@ func _is_editor_tool() -> bool:
 	return Engine.editor_hint
 
 func load_selected_texture() -> void:
-	$TankBodySprite.texture = $TankBodySkinManager.selected_texture
-	$TankBarrelNode2D/TankBarrelSprite.texture = $TankBarrelNode2D/BarrelSkinManager.selected_texture
+	var tank_body_sprite: Sprite = $TankBodySprite
+	var tank_barrel_sprite: Sprite = $TankBarrelNode2D/TankBarrelSprite
+
+	var skin_body_manager: SkinManager = $TankBodySkinManager
+	var skin_barrel_manager: SkinManager = $TankBarrelNode2D/BarrelSkinManager
+
+	tank_body_sprite.set_texture(skin_body_manager.selected_texture)
+	tank_barrel_sprite.set_texture(skin_barrel_manager.selected_texture)

@@ -19,8 +19,8 @@ func on_fire() -> void:
 	if (bullet_is_of_limit()):
 		destroy_bullet()
 		
-	_view.translate(_model.bullet_direction * _model.bullet_velocity * _view.get_process_delta_time())
-	_view.set_rotation(_model.bullet_direction.angle())
+	_view.translate(_model.get_bullet_direction() * _model.BULLET_VELOCITY * _view.get_process_delta_time())
+	_view.set_rotation(_model.get_bullet_direction().angle())
 	
 func add_in_group_list(group_name: String):
 	_view.add_to_group(group_name)
@@ -29,7 +29,7 @@ func bullet_is_alive() -> bool:
 	return _model.get_bullet_state()
 
 func bullet_is_of_limit() -> bool:
-	return _reached_maximum_distance_limit(_view.global_position, _view.bullet_initial_position, MAX_BULLET_DISTANCE)
+	return _reached_maximum_distance_limit(_view.global_position, _model.get_bullet_initial_position(), MAX_BULLET_DISTANCE)
 
 func destroy_bullet() -> void:
 	_model.set_bullet_state(false)

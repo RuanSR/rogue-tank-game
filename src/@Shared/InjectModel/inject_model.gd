@@ -32,6 +32,6 @@ static func load_model_dependency(viewer_node, name_list_of_nodes_in_view: Array
 static func get_dependency(name_of_dep: String):
 	if (_models_dependency_injectable.has(name_of_dep)):
 		var dependecy = _models_dependency_injectable.get(name_of_dep)
-		_models_dependency_injectable.erase(name_of_dep)
+		var _erased = _models_dependency_injectable.erase(name_of_dep)
 
 		return dependecy

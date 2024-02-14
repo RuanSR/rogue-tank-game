@@ -1,19 +1,19 @@
+class_name TankBulletView
 extends Area2D
 
 var _presenter: TankBulletPresenter
 var _common_player: CommonPlayer
 
-onready var bullet_direction: Vector2
-onready var parent_reference: String
-onready var bullet_initial_position: Vector2 = global_position
+onready var _bullet_direction: Vector2
+onready var _parent_reference: String
 
 
 func _ready() -> void:
-	_presenter = TankBulletPresenter.new(self, self.bullet_direction, global_position)
+	_presenter = TankBulletPresenter.new(self, _bullet_direction, global_position)
 	
-	_presenter.add_in_group_list(_common_player.Barrel_Bullet_State_Group.CANNON_BULLETS+parent_reference)
+	_presenter.add_in_group_list(_common_player.Barrel_Bullet_State_Group.CANNON_BULLETS + _parent_reference)
  
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	
 	if (_presenter.bullet_is_alive()):
 		_presenter.on_fire()
@@ -23,10 +23,12 @@ func _on_BulletVisibilityNotifier2D_screen_exited():
 
 func init(bullet_direction: Vector2, parent_reference: String):
 	_common_player = CommonPlayer.new()
-	self.bullet_direction = bullet_direction
-	self.parent_reference = parent_reference
+	self._bullet_direction = bullet_direction
+	self._parent_reference = parent_reference
 
 
-func _on_TankBullet_body_entered(body: Node2D):
-	if (body.collision_layer == 4):
+func _on_TankBullet_body_entered(body) -> void:
+	var collider_player_bullet_layer = 4
+
+	if (body.collision_layer == collider_player_bullet_layer):
 		_presenter.destroy_bullet()

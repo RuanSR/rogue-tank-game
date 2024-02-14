@@ -20,13 +20,13 @@ func _init(tank_view: KinematicBody2D):
 func _is_shot_limit_reachead() -> bool:
 	var allow_shot = true
 	
-	if (_view.get_tree().get_nodes_in_group(_common.Barrel_Bullet_State_Group.CANNON_BULLETS + _self_ref).size() >= _model.shot_limit):
+	if (_view.get_tree().get_nodes_in_group(_common.Barrel_Bullet_State_Group.CANNON_BULLETS + _self_ref).size() >= _model.LIMIT_SHOT):
 		return allow_shot
 		
 	return !allow_shot
 
 func _create_and_add_new_bullet() -> void:
-	var bullet: Area2D = _view._prefab_bullet.instance()
+	var bullet: TankBulletView = _model._prefab_bullet.instance()
 	var muzzle: Position2D = _model.bullet_muzzle_position
 	
 	var direction: Vector2 = Vector2( cos(_view.global_rotation), sin(_view.global_rotation) ).normalized()
@@ -51,7 +51,6 @@ func look_at_mouse() -> void:
 
 func on_move() -> void:
 
-	var delta := _view.get_process_delta_time()
 	var dir_x := 0;
 	var dir_y := 0;
 	
@@ -67,7 +66,7 @@ func on_move() -> void:
 	if(Input.is_action_pressed("ui_down")):
 		dir_y += 1;
 	
-	_view.move_and_slide(Vector2(dir_x, dir_y) * _model.speed)
+	var _linear_velocity = _view.move_and_slide(Vector2(dir_x, dir_y) * _model.MOVE_SPEED)
 
 func on_shoot() -> void:
 	

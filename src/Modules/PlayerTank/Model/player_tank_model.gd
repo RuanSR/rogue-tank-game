@@ -1,7 +1,8 @@
 class_name PlayerModel
 
-var speed: int = 250
-var shot_limit: int = 5
+const MOVE_SPEED: int = 250
+const LIMIT_SHOT: int = 5
+const _prefab_bullet: PackedScene = preload("res://src/Modules/PlayerTank/View/TankBullet.tscn")
 
 var tank_body_collision_poly: CollisionPolygon2D
 var tank_body_sprite: Sprite

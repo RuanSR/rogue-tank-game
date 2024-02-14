@@ -1,3 +1,4 @@
+class_name SkinManager
 extends Node2D
 
 export var path_skins: String
