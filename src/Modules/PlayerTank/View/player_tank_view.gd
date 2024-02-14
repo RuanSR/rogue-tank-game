@@ -1,5 +1,5 @@
 tool
-extends KinematicBody2D
+extends PlayerTankExportedProperties
 
 var _presenter: PlayerPresenter
 

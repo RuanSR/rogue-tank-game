@@ -54,6 +54,8 @@ tracks/2/keys = {
 [node name="PlayerTank" type="KinematicBody2D"]
 collision_mask = 6
 script = ExtResource( 2 )
+speed_velocity = null
+bullet_limit_shot = null
 
 [node name="TankBodySkinManager" parent="." instance=ExtResource( 7 )]
 selected_index_texture = 5

@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Modules/PlayerTank/Presenter/player_tank_presenter.gd"
 }, {
+"base": "KinematicBody2D",
+"class": "PlayerTankExportedProperties",
+"language": "GDScript",
+"path": "res://src/Modules/PlayerTank/Model/player_tank_exported_properties.gd"
+}, {
 "base": "Node2D",
 "class": "SkinManager",
 "language": "GDScript",
@@ -54,6 +59,7 @@ _global_script_class_icons={
 "InjectModel": "",
 "PlayerModel": "",
 "PlayerPresenter": "",
+"PlayerTankExportedProperties": "",
 "SkinManager": "",
 "TankBulletModel": "",
 "TankBulletPresenter": "",

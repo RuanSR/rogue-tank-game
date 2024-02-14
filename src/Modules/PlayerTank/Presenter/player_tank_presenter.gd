@@ -20,7 +20,7 @@ func _init(tank_view: KinematicBody2D):
 func _is_shot_limit_reachead() -> bool:
 	var allow_shot = true
 	
-	if (_view.get_tree().get_nodes_in_group(_common.Barrel_Bullet_State_Group.CANNON_BULLETS + _self_ref).size() >= _model.LIMIT_SHOT):
+	if (_view.get_tree().get_nodes_in_group(_common.Barrel_Bullet_State_Group.CANNON_BULLETS + _self_ref).size() >= _model.bullet_limit_shot):
 		return allow_shot
 		
 	return !allow_shot
@@ -66,7 +66,7 @@ func on_move() -> void:
 	if(Input.is_action_pressed("ui_down")):
 		dir_y += 1;
 	
-	var _linear_velocity = _view.move_and_slide(Vector2(dir_x, dir_y) * _model.MOVE_SPEED)
+	var _linear_velocity = _view.move_and_slide(Vector2(dir_x, dir_y) * _model.speed_velocity)
 
 func on_shoot() -> void:
 	

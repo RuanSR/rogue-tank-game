@@ -1,8 +1,9 @@
 class_name PlayerModel
 
-const MOVE_SPEED: int = 250
-const LIMIT_SHOT: int = 5
+var speed_velocity: int setget set_speed_velocity, get_speed_velocity
+var bullet_limit_shot: int setget set_bullet_limit_shot, get_bullet_limit_shot
 const _prefab_bullet: PackedScene = preload("res://src/Modules/PlayerTank/View/TankBullet.tscn")
+var _expo_prop_model: PlayerTankExportedProperties
 
 var tank_body_collision_poly: CollisionPolygon2D
 var tank_body_sprite: Sprite
@@ -24,3 +25,19 @@ func _init():
 	self.bullet_shot_animation_player = InjectModel.get_dependency("BulletShotAnimationPlayer")
 	self.tank_body_skin_manager = InjectModel.get_dependency("TankBodySkinManager")
 	self.tank_barrel_skin_manager = InjectModel.get_dependency("BarrelSkinManager")
+	_expo_prop_model = InjectModel.get_dependency("PlayerTank")
+
+	speed_velocity = _expo_prop_model.speed_velocity
+	bullet_limit_shot = _expo_prop_model.bullet_limit_shot
+
+func get_speed_velocity():
+	return speed_velocity
+
+func set_speed_velocity(value: int):
+	speed_velocity = value
+
+func set_bullet_limit_shot(value: int):
+	bullet_limit_shot = value
+
+func get_bullet_limit_shot() -> int:
+	return bullet_limit_shot
