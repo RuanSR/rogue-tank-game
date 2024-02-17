@@ -3,7 +3,7 @@ class_name PlayerModel
 var speed_velocity: int setget set_speed_velocity, get_speed_velocity
 var bullet_limit_shot: int setget set_bullet_limit_shot, get_bullet_limit_shot
 const _prefab_bullet: PackedScene = preload("res://src/Modules/PlayerTank/View/TankBullet.tscn")
-var _expo_prop_model: PlayerTankExportedProperties
+var _expo_prop_model: PlayerBase
 
 var tank_body_collision_poly: CollisionPolygon2D
 var tank_body_sprite: Sprite

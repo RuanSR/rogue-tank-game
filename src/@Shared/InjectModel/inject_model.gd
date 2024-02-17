@@ -22,10 +22,37 @@ static func _add_self_node_in_dependency(viewer_node) -> Dictionary:
 
 	return dependency_dictionary
 
-static func load_model_dependency(viewer_node, name_list_of_nodes_in_view: Array = []) -> void:
+static func _parse_to_pattern_name(value: String) -> String:
+	return value.capitalize().replace(" ", "_").to_lower()
+
+static func auto_load_node_dependency(viewer_node, to_inject_instance):
 	var dependency_dictionary: Dictionary = {}
 	
 	var name_list_of_nodes: Array =  _scan_nodes(viewer_node)
+	
+	for node_name in name_list_of_nodes:
+		var parsed_name: String = _parse_to_pattern_name(node_name)
+		dependency_dictionary.keys().append(parsed_name)
+		dependency_dictionary[parsed_name] = viewer_node.find_node(node_name)
+		
+	dependency_dictionary.merge(_add_self_node_in_dependency(viewer_node))
+	
+	var properties_in_to = to_inject_instance.get_property_list()
+
+	for prop in properties_in_to:
+		var parsed_prop = _parse_to_pattern_name(prop["name"])
+		
+		if (dependency_dictionary.has(parsed_prop)):
+			to_inject_instance.set(parsed_prop, dependency_dictionary.get(parsed_prop))
+	
+	dependency_dictionary.clear()
+
+static func load_model_dependency(viewer_node, name_list_of_nodes_in_view: Array = []) -> void:
+	var dependency_dictionary: Dictionary = {}
+	var name_list_of_nodes: Array =  _scan_nodes(viewer_node)
+	
+	dependency_dictionary.merge(_add_self_node_in_dependency(viewer_node))
+
 	if (name_list_of_nodes_in_view.size() == 0):
 		for node_name in name_list_of_nodes:
 			dependency_dictionary.keys().append(node_name)
@@ -37,7 +64,6 @@ static func load_model_dependency(viewer_node, name_list_of_nodes_in_view: Array
 					dependency_dictionary.keys().append(name_of_node_model)
 					dependency_dictionary[name_of_node_model] = viewer_node.find_node(name_of_node_model)
 	
-	dependency_dictionary.merge(_add_self_node_in_dependency(viewer_node))
 	_models_dependency_injectable.merge(dependency_dictionary)
 
 static func get_dependency(name_of_dep: String):

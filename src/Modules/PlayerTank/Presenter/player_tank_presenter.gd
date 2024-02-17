@@ -1,6 +1,6 @@
 class_name PlayerPresenter
 
-var _view: KinematicBody2D
+var _view: PlayerBase
 
 var _model: PlayerModel
 
@@ -8,7 +8,7 @@ var _common: CommonPlayer = CommonPlayer.new()
 
 var _self_ref: String
 
-func _init(tank_view: KinematicBody2D):
+func _init(tank_view: PlayerBase):
 	self._view = tank_view
 
 	_self_ref = str(self._view)

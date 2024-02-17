@@ -12,6 +12,7 @@ extents = Vector2( 517.25, 14 )
 [node name="PlayerTank" parent="." instance=ExtResource( 1 )]
 position = Vector2( 246.467, 333.52 )
 rotation = -131.854
+speed_velocity = 250
 
 [node name="TankBodySkinManager" parent="PlayerTank" index="0"]
 selected_index_texture = 3

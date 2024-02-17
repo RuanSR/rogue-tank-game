@@ -1,4 +1,4 @@
-class_name PlayerTankExportedProperties
+class_name PlayerBase
 extends KinematicBody2D
 
 export var speed_velocity: int = 250 setget set_speed_velocity, get_speed_velocity

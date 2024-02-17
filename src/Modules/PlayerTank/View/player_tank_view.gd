@@ -1,5 +1,5 @@
 tool
-extends PlayerTankExportedProperties
+extends PlayerBase
 
 var _presenter: PlayerPresenter
 
