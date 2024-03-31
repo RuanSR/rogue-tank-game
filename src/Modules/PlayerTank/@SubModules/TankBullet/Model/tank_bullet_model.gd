@@ -27,7 +27,6 @@ func set_bullet_direction(new_direction: Vector2) -> void:
 
 func get_bullet_direction() -> Vector2:
 		return _bullet_direction
-	
 
 func set_bullet_state(is_live: bool) -> void:
 	_is_live = is_live

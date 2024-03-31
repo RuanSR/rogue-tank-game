@@ -42,17 +42,17 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "TankBulletModel",
 "language": "GDScript",
-"path": "res://src/Modules/PlayerTank/Model/tank_bullet_model.gd"
+"path": "res://src/Modules/PlayerTank/@SubModules/TankBullet/Model/tank_bullet_model.gd"
 }, {
 "base": "Reference",
 "class": "TankBulletPresenter",
 "language": "GDScript",
-"path": "res://src/Modules/PlayerTank/Presenter/tank_bullet_presenter.gd"
+"path": "res://src/Modules/PlayerTank/@SubModules/TankBullet/Presenter/tank_bullet_presenter.gd"
 }, {
 "base": "Area2D",
 "class": "TankBulletView",
 "language": "GDScript",
-"path": "res://src/Modules/PlayerTank/View/tank_bullet_view.gd"
+"path": "res://src/Modules/PlayerTank/@SubModules/TankBullet/View/tank_bullet_view.gd"
 } ]
 _global_script_class_icons={
 "CommonPlayer": "",
