@@ -2,7 +2,7 @@ class_name InjectModel
 
 const _models_dependency_injectable = {}
 
-static func _scan_nodes(node_tree)-> Array:
+static func _scan_nodes(node_tree) -> Array:
 	var name_list_of_nodes: Array = []
 
 	for node in node_tree.get_children():
@@ -27,29 +27,34 @@ static func _parse_to_pattern_name(value: String) -> String:
 
 static func auto_load_node_dependency(viewer_node, to_inject_instance):
 	var dependency_dictionary: Dictionary = {}
-	
-	var name_list_of_nodes: Array =  _scan_nodes(viewer_node)
+	var name_list_of_nodes: Array = _scan_nodes(viewer_node)
+
+	# dependency_dictionary.merge(_add_self_node_in_dependency(viewer_node))
+	var self_node_name = viewer_node.get_name()
+	var parsed_self_name = _parse_to_pattern_name(self_node_name)
+
+	dependency_dictionary.keys().append(parsed_self_name)
+	dependency_dictionary[parsed_self_name] = viewer_node
+	#fim manual add parent
 	
 	for node_name in name_list_of_nodes:
 		var parsed_name: String = _parse_to_pattern_name(node_name)
 		dependency_dictionary.keys().append(parsed_name)
 		dependency_dictionary[parsed_name] = viewer_node.find_node(node_name)
-		
-	dependency_dictionary.merge(_add_self_node_in_dependency(viewer_node))
 	
 	var properties_in_to = to_inject_instance.get_property_list()
 
 	for prop in properties_in_to:
-		var parsed_prop = _parse_to_pattern_name(prop["name"])
-		
-		if (dependency_dictionary.has(parsed_prop)):
-			to_inject_instance.set(parsed_prop, dependency_dictionary.get(parsed_prop))
+		var prop_name = prop["name"]
+
+		if (dependency_dictionary.has(prop_name)):
+			to_inject_instance.set(prop_name, dependency_dictionary.get(prop_name))
 	
 	dependency_dictionary.clear()
 
-static func load_model_dependency(viewer_node, name_list_of_nodes_in_view: Array = []) -> void:
+static func load_model_dependency(viewer_node, name_list_of_nodes_in_view: Array=[]) -> void:
 	var dependency_dictionary: Dictionary = {}
-	var name_list_of_nodes: Array =  _scan_nodes(viewer_node)
+	var name_list_of_nodes: Array = _scan_nodes(viewer_node)
 	
 	dependency_dictionary.merge(_add_self_node_in_dependency(viewer_node))
 
@@ -70,5 +75,5 @@ static func get_dependency(name_of_dep: String):
 	if (_models_dependency_injectable.has(name_of_dep)):
 		var dependecy = _models_dependency_injectable.get(name_of_dep)
 		var _erased = _models_dependency_injectable.erase(name_of_dep)
-
+		
 		return dependecy
