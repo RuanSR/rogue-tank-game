@@ -4,7 +4,6 @@ extends PlayerBase
 var _presenter: PlayerPresenter
 
 func _ready():
-	
 	_presenter = PlayerPresenter.new(self)
 	
 	load_selected_texture()

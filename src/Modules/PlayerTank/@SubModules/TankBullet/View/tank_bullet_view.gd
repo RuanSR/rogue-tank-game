@@ -1,12 +1,11 @@
 class_name TankBulletView
-extends Area2D
+extends BulletBase
 
 var _presenter: TankBulletPresenter
 var _common_player: CommonPlayer
 
 onready var _bullet_direction: Vector2
 onready var _parent_reference: String
-
 
 func _ready() -> void:
 	_presenter = TankBulletPresenter.new(self, _bullet_direction, global_position)
@@ -26,6 +25,7 @@ func init(bullet_direction: Vector2, parent_reference: String):
 	self._bullet_direction = bullet_direction
 	self._parent_reference = parent_reference
 
+	InjectModel.load_model_dependency(self)
 
 func _on_TankBullet_body_entered(body) -> void:
 	var collider_player_bullet_layer = 4

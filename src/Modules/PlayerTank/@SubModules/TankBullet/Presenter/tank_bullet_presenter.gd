@@ -8,8 +8,6 @@ var _model: TankBulletModel
 func _init(tank_bullet_view: Area2D, bullet_direction: Vector2, bullet_initial_position: Vector2) -> void:
 	self._view = tank_bullet_view
 	
-	InjectModel.load_model_dependency(self._view)
-	
 	_model = TankBulletModel.new(bullet_direction, bullet_initial_position)
 
 func _reached_maximum_distance_limit(actual_position: Vector2, initial_position: Vector2, max_distance: int) -> bool:
@@ -19,7 +17,7 @@ func on_fire() -> void:
 	if (bullet_is_of_limit()):
 		destroy_bullet()
 		
-	_view.translate(_model.get_bullet_direction() * _model.BULLET_VELOCITY * _view.get_process_delta_time())
+	_view.translate(_model.get_bullet_direction() * _model.get_bullet_velocity() * _view.get_process_delta_time())
 	_view.set_rotation(_model.get_bullet_direction().angle())
 	
 func add_in_group_list(group_name: String):
@@ -37,5 +35,5 @@ func destroy_bullet() -> void:
 	_model.bullet_sprite.set_visible(false)
 	_model.bullet_self_destruction_animation_player.play("explode")
 	_view.set_deferred("set_monitoring", false)
-	yield(_model.bullet_self_destruction_animation_player,"animation_finished")
+	yield (_model.bullet_self_destruction_animation_player, "animation_finished")
 	_view.queue_free()

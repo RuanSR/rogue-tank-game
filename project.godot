@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Area2D",
+"class": "BulletBase",
+"language": "GDScript",
+"path": "res://src/Modules/PlayerTank/@SubModules/TankBullet/Model/bullet_base.gd"
+}, {
 "base": "Reference",
 "class": "CommonPlayer",
 "language": "GDScript",
@@ -49,12 +54,13 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Modules/PlayerTank/@SubModules/TankBullet/Presenter/tank_bullet_presenter.gd"
 }, {
-"base": "Area2D",
+"base": "BulletBase",
 "class": "TankBulletView",
 "language": "GDScript",
 "path": "res://src/Modules/PlayerTank/@SubModules/TankBullet/View/tank_bullet_view.gd"
 } ]
 _global_script_class_icons={
+"BulletBase": "",
 "CommonPlayer": "",
 "InjectModel": "",
 "PlayerBase": "",
