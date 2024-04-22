@@ -1,5 +1,7 @@
 class_name PlayerPresenter
 
+var _acceleration: int = 0
+
 var _view: PlayerBase
 
 var _model: PlayerModel
@@ -50,23 +52,32 @@ func look_at_mouse() -> void:
 	_view.look_at(_view.get_global_mouse_position())
 
 func on_move() -> void:
+	var direction_value := 0
 
-	var dir_x := 0;
-	var dir_y := 0;
-	
-	if (Input.is_action_pressed("ui_right")):
-		dir_x += 1;
-	
-	if (Input.is_action_pressed("ui_left")):
-		dir_x -= 1;
-	
 	if (Input.is_action_pressed("ui_up")):
-		dir_y -= 1;
+		direction_value += 1;
 	
 	if (Input.is_action_pressed("ui_down")):
-		dir_y += 1;
+		direction_value -= 1;
+
+	if (direction_value != 0):
+		_acceleration = lerp(_acceleration, _model.MAX_SPEED * direction_value, .03)
+	else:
+		_acceleration = lerp(_acceleration, 0, .05)
 	
-	var _linear_velocity = _view.move_and_slide(Vector2(dir_x, dir_y) * _model.speed_velocity)
+	var _linear_velocity = _view.move_and_slide(Vector2(cos(_view.rotation), sin(_view.rotation)) * _acceleration)
+
+func on_rotate() -> void:
+
+	var rot = 0
+
+	if (Input.is_action_pressed("ui_right")):
+		rot += 1;
+	
+	if (Input.is_action_pressed("ui_left")):
+		rot -= 1;
+	
+	_view.rotate(_model.ROTATION_VELOCITY * rot * _view.get_physics_process_delta_time())
 
 func on_shoot() -> void:
 	
