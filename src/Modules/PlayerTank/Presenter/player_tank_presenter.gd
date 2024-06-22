@@ -31,7 +31,7 @@ func _create_and_add_new_bullet() -> void:
 	var bullet: TankBulletView = _model._prefab_bullet.instance()
 	var muzzle: Position2D = _model.bullet_muzzle_position
 	
-	var direction: Vector2 = Vector2(cos(_view.global_rotation), sin(_view.global_rotation)).normalized()
+	var direction: Vector2 = Vector2(cos(_model.tank_barrel_node.global_rotation), sin(_model.tank_barrel_node.global_rotation)).normalized()
 	
 	bullet.init(direction, _self_ref)
 	
@@ -49,7 +49,7 @@ func _create_and_add_new_bullet() -> void:
 	_model.bullet_shot_sprite.set_rotation_degrees( - 90)
 
 func look_at_mouse() -> void:
-	_view.look_at(_view.get_global_mouse_position())
+	_model.tank_barrel_node.look_at(_view.get_global_mouse_position())
 
 func on_move() -> void:
 	var direction_value := 0
@@ -60,10 +60,7 @@ func on_move() -> void:
 	if (Input.is_action_pressed("ui_down")):
 		direction_value -= 1;
 
-	if (direction_value != 0):
-		_acceleration = lerp(_acceleration, _model.MAX_SPEED * direction_value, .03)
-	else:
-		_acceleration = lerp(_acceleration, 0, .05)
+	_acceleration = lerp(_acceleration, _model.MAX_SPEED * direction_value, .03)
 	
 	var _linear_velocity = _view.move_and_slide(Vector2(cos(_view.rotation), sin(_view.rotation)) * _acceleration)
 

@@ -16,7 +16,7 @@ func _physics_process(_delta):
 	_presenter.on_move()
 	_presenter.on_rotate()
 	_presenter.on_shoot()
-	# _presenter.look_at_mouse()
+	_presenter.look_at_mouse()
 
 func _draw():
 	if (_is_editor_tool()):

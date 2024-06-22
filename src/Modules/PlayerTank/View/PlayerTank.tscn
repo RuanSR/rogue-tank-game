@@ -54,10 +54,9 @@ tracks/2/keys = {
 [node name="PlayerTank" type="KinematicBody2D"]
 collision_mask = 6
 script = ExtResource( 2 )
-speed_velocity = 100
 
 [node name="TankBodySkinManager" parent="." instance=ExtResource( 7 )]
-selected_index_texture = 5
+selected_index_texture = 6
 
 [node name="TankBodyCollisionPoly2D" type="CollisionPolygon2D" parent="."]
 polygon = PoolVector2Array( -15, -20, -21, -15, -21, 13, -14, 19, -10, 21, 10, 21, 15, 18, 21, 14, 21, -15, 18, -19, 13, -21, -14, -21 )
@@ -69,6 +68,7 @@ texture = ExtResource( 3 )
 [node name="TankBarrelNode2D" type="Node2D" parent="."]
 
 [node name="BarrelSkinManager" parent="TankBarrelNode2D" instance=ExtResource( 7 )]
+selected_index_texture = 3
 
 [node name="BulletMuzzlePosition2D" type="Position2D" parent="TankBarrelNode2D"]
 position = Vector2( 30, 0 )
