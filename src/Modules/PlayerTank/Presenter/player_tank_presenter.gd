@@ -10,6 +10,8 @@ var _common: CommonPlayer = CommonPlayer.new()
 
 var _self_ref: String
 
+var travel = 0
+
 func _init(tank_view: PlayerBase):
 	self._view = tank_view
 
@@ -48,6 +50,21 @@ func _create_and_add_new_bullet() -> void:
 	_model.bullet_shot_sprite.set_position(Vector2(37, 0))
 	_model.bullet_shot_sprite.set_rotation_degrees( - 90)
 
+func _add_travel(move: Vector2) -> void:
+	travel += move.length() * _view.get_physics_process_delta_time()
+	
+	# _model.tank_body_sprite.texture.get_size().y: 
+	# Pega o tamanho do body, para adcionar a trilha apos o carro andar
+	if(travel > _model.tank_body_sprite.texture.get_size().y):
+		travel = 0
+		var track = _model._prefab_track.instance()
+		var travelToPixelsBack = Vector2(cos(_view.rotation), sin(_view.rotation)).normalized() * 5
+		
+		track.global_position = _view.global_position - travelToPixelsBack
+		track.rotation = _view.rotation
+		track.z_index = _view.z_index - 1
+		_view.get_parent().add_child(track)
+
 func look_at_mouse() -> void:
 	_model.tank_barrel_node.look_at(_view.get_global_mouse_position())
 
@@ -62,7 +79,11 @@ func on_move() -> void:
 
 	_acceleration = lerp(_acceleration, _model.MAX_SPEED * direction_value, .03)
 	
-	var _linear_velocity = _view.move_and_slide(Vector2(cos(_view.rotation), sin(_view.rotation)) * _acceleration)
+	var _linear_velocity: Vector2 = _view.move_and_slide(Vector2(cos(_view.rotation), sin(_view.rotation)) * _acceleration)
+	
+	_add_travel(_linear_velocity)
+	
+	pass
 
 func on_rotate() -> void:
 

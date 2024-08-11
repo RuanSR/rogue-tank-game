@@ -5,8 +5,10 @@ const MAX_SPEED: int = 100
 
 var speed_velocity: int setget set_speed_velocity, get_speed_velocity
 var bullet_limit_shot: int setget set_bullet_limit_shot, get_bullet_limit_shot
-const _prefab_bullet: PackedScene = preload ("res://src/Modules/PlayerTank/@SubModules/TankBullet/View/TankBullet.tscn")
 var _expo_prop_model: PlayerBase
+
+const _prefab_bullet: PackedScene = preload ("res://src/Modules/PlayerTank/@SubModules/TankBullet/View/TankBullet.tscn")
+const _prefab_track: PackedScene = preload("res://src/Modules/PlayerTank/@SubModules/TankTrack/TankTrack.tscn")
 
 var tank_body_collision_poly: CollisionPolygon2D
 var tank_body_sprite: Sprite
