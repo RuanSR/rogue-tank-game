@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/Modules/Managers/SkinManager/SkinManager.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/Modules/@World/Objects/Crate/@Assets/crateMetal.png" type="Texture" id=2]
+[ext_resource path="res://src/Modules/@World/Objects/Crate/crate.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 13, 13 )
+
+[node name="Crate" type="Node2D"]
+light_mask = 0
+script = ExtResource( 3 )
+
+[node name="CrateStaticBody" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CrateCollision" type="CollisionShape2D" parent="CrateStaticBody"]
+shape = SubResource( 1 )
+
+[node name="CrateSprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="SkinManager" parent="." instance=ExtResource( 1 )]
+path_skins = "res://src/Modules/@World/Objects/Crate/@Assets/"
+selected_index_texture = 0
