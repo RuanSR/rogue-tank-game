@@ -9,6 +9,21 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Reference",
+"class": "BarrelModel",
+"language": "GDScript",
+"path": "res://src/Modules/PlayerTank/@SubModules/TankBarrel/Model/barrel_model.gd"
+}, {
+"base": "Reference",
+"class": "BarrelPresenter",
+"language": "GDScript",
+"path": "res://src/Modules/PlayerTank/@SubModules/TankBarrel/Presenter/barrel_presenter.gd"
+}, {
+"base": "Node2D",
+"class": "BarrelView",
+"language": "GDScript",
+"path": "res://src/Modules/PlayerTank/@SubModules/TankBarrel/barrel_view.gd"
+}, {
 "base": "Area2D",
 "class": "BulletBase",
 "language": "GDScript",
@@ -60,6 +75,9 @@ _global_script_classes=[ {
 "path": "res://src/Modules/PlayerTank/@SubModules/TankBullet/View/tank_bullet_view.gd"
 } ]
 _global_script_class_icons={
+"BarrelModel": "",
+"BarrelPresenter": "",
+"BarrelView": "",
 "BulletBase": "",
 "CommonPlayer": "",
 "InjectModel": "",

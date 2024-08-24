@@ -5,5 +5,4 @@
 
 [node name="SkinManager" type="Node2D"]
 script = ExtResource( 1 )
-path_skins = "res://src/Modules/PlayerTank/@Assets/tank_body/"
 _default_texture = ExtResource( 2 )
