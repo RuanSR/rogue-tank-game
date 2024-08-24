@@ -1,11 +1,7 @@
 extends Node2D
 
+export var path_skins: String
+export var selected_skin_index: int = 0
+
 func _ready():
-	load_selected_texture()
-	pass
-
-func load_selected_texture() -> void:
-	var crate_sprite: Sprite = $CrateSprite
-	var skin_manager: SkinManager = $SkinManager
-
-	crate_sprite.set_texture(skin_manager.selected_texture)
+	$CrateSprite.set_texture($SkinManager.get_sprite_texture())

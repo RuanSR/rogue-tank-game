@@ -1,11 +1,11 @@
 class_name SkinManager
 extends Node2D
 
-export var path_skins: String
 export var file_extension: String = ".png" setget set_file_extension
-export var selected_index_texture: int = -1 setget set_texture_index
-
 export var _default_texture: Texture
+
+var path_skins: String
+var selected_index_texture: int = 0
 
 var selected_texture: Texture
 var selected_texture_name: String
@@ -15,10 +15,21 @@ var _list_of_name_textures: Array = []
 
 
 func _ready():
+	_get_parent_path_skins()
+	_get_parent_selected_skin_index()
 	_dynamic_load_skins(path_skins)
 	
 	_set_selected_texture()
 	_set_selected_texture_name()
+
+func _is_editor_tool() -> bool:
+	return Engine.editor_hint
+
+func _get_parent_path_skins() -> void:
+	var nodeParent = get_parent()
+	var value = nodeParent.path_skins
+	
+	path_skins = value
 
 func _dynamic_load_skins(path: String) -> void:
 	var directory = Directory.new()
@@ -47,21 +58,25 @@ func _file_extension_valid_parser(extension_value: String) -> String:
 	
 	return extension_value
 
-func set_texture_index(value: int = 0) -> void:
+func _get_parent_selected_skin_index() -> void:
+	var nodeParent = get_parent()
+	
+	var value = nodeParent.selected_skin_index
+	
 	if (value < 0):
 		selected_index_texture = 0
-	
-	selected_index_texture = value
+	else:
+		selected_index_texture = value
 
 func set_file_extension(value: String) -> void:
 	file_extension = _file_extension_valid_parser(value)
 
 func _set_selected_texture() -> void:
-	if (selected_index_texture == -1):
+	if (selected_index_texture < 0 or selected_index_texture > _list_of_paths.size() -1):
 		selected_texture = _default_texture
-		return
-	
-	selected_texture = load(_list_of_paths[selected_index_texture])
+		selected_index_texture = -1
+	else:
+		selected_texture = load(_list_of_paths[selected_index_texture])
 
 func _set_selected_texture_name() -> void:
 	if (selected_index_texture == -1):
@@ -69,3 +84,8 @@ func _set_selected_texture_name() -> void:
 		return
 	selected_texture_name = _list_of_name_textures[selected_index_texture]
 
+func set_sprite_texture(sprite: Sprite) -> void:
+	sprite.set_texture(selected_texture)
+
+func get_sprite_texture() -> Texture:
+	return selected_texture;
