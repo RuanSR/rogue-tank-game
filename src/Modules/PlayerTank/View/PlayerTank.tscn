@@ -2,13 +2,16 @@
 
 [ext_resource path="res://src/Modules/PlayerTank/@SubModules/TankBarrel/TankBarrel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Modules/PlayerTank/View/player_tank_view.gd" type="Script" id=2]
-[ext_resource path="res://src/Modules/PlayerTank/@Assets/tank_body/tankBody_blue_outline.png" type="Texture" id=3]
+[ext_resource path="res://src/Modules/PlayerTank/@Assets/tank_body/tankBody_bigRed.png" type="Texture" id=3]
 [ext_resource path="res://src/Modules/Managers/SkinManager/SkinManager.tscn" type="PackedScene" id=7]
 
 [node name="PlayerTank" type="KinematicBody2D"]
 z_index = 20
 collision_mask = 6
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
 path_skins = "res://src/Modules/PlayerTank/@Assets/tank_body/"
 
 [node name="TankBodySkinManager" parent="." instance=ExtResource( 7 )]
@@ -21,3 +24,4 @@ rotation = 1.5708
 texture = ExtResource( 3 )
 
 [node name="TankBarrel" parent="." instance=ExtResource( 1 )]
+selected_skin_index = 32

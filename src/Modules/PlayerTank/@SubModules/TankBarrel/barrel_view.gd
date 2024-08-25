@@ -1,3 +1,4 @@
+tool
 class_name BarrelView extends Node2D
 
 
@@ -10,7 +11,10 @@ func get_bullet_limit_shot():
 	return bullet_limit_shot
 
 export var path_skins: String
-export var selected_skin_index: int = 0
+export var selected_skin_index: int = 0 setget set_selected_skin_index
+
+func set_selected_skin_index(value: int):
+	selected_skin_index = value
 
 var _presenter: BarrelPresenter
 
@@ -22,6 +26,10 @@ func _init():
 	InjectModel.load_model_dependency(self)
 
 func _physics_process(_delta):
+	if (Engine.is_editor_hint()):
+		$TankBarrelSprite.set_texture($BarrelSkinManager.get_sprite_texture())
+		return
+	
 	on_shot()
 	look_at(get_global_mouse_position())
 
