@@ -65,6 +65,7 @@ position = Vector2( 30, 0 )
 
 [node name="TankBarrelSprite" type="Sprite" parent="."]
 rotation = 1.5708
+scale = Vector2( 1.2, 1.2 )
 texture = ExtResource( 3 )
 offset = Vector2( 0, -9 )
 
