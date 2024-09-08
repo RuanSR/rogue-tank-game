@@ -47,10 +47,10 @@ texture = ExtResource( 2 )
 
 [node name="PlayerTank" parent="." instance=ExtResource( 1 )]
 position = Vector2( 231, 282 )
-selected_skin_index = 12
+selected_skin_index = 11
 
 [node name="TankBarrel" parent="PlayerTank" instance=ExtResource( 3 )]
-selected_skin_index = 6
+selected_skin_index = 43
 
 [node name="Nature" type="Node" parent="."]
 

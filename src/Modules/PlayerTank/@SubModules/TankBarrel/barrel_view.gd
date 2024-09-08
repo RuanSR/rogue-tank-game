@@ -1,6 +1,7 @@
 tool
 class_name BarrelView extends Node2D
 
+var can_mouse_look = false
 
 export var bullet_limit_shot: int = 5 setget set_bullet_limit_shot, get_bullet_limit_shot
 
@@ -25,13 +26,18 @@ func _ready():
 func _init():
 	InjectModel.load_model_dependency(self)
 
+func _input(event):
+	if (event is InputEventMouseMotion):
+		can_mouse_look = true
+
 func _physics_process(_delta):
 	if (Engine.is_editor_hint()):
 		$TankBarrelSprite.set_texture($BarrelSkinManager.get_sprite_texture())
 		return
 	
 	on_shot()
-	look_at(get_global_mouse_position())
+	_presenter.on_barrel_move()
+
 
 func on_shot() -> void:
 	if (Input.is_action_just_pressed("ui_shoot")):

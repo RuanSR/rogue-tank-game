@@ -40,13 +40,16 @@ func _add_travel(move: Vector2) -> void:
 
 func on_move() -> void:
 	var direction_value := 0
-
+	
 	if (Input.is_action_pressed("ui_up")):
 		direction_value += 1;
 	
 	if (Input.is_action_pressed("ui_down")):
 		direction_value -= 1;
-
+	
+	if (direction_value == 0):
+		direction_value = -Input.get_joy_axis(0, JOY_AXIS_1)
+	
 	_acceleration = lerp(_acceleration, _model.MAX_SPEED * direction_value, .03)
 	
 	var variation_velocity: float = 1
@@ -68,5 +71,8 @@ func on_rotate() -> void:
 	
 	if (Input.is_action_pressed("ui_left")):
 		rot -= 1;
+	
+	if (rot == 0):
+		rot = Input.get_joy_axis(0, JOY_AXIS_0)
 	
 	_view.rotate(_model.ROTATION_VELOCITY * rot * _view.get_physics_process_delta_time())
