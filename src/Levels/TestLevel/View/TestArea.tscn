@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/Modules/PlayerTank/View/PlayerTank.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Modules/@World/Objects/Crate/@Assets/crateWood.png" type="Texture" id=2]
 [ext_resource path="res://src/Modules/PlayerTank/@SubModules/TankBarrel/TankBarrel.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/Modules/@World/Objects/Crate/Crate.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/Modules/@World/Tree/Tree.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/Modules/@World/Objects/OilSpill/OilSpill.tscn" type="PackedScene" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 517.25, 14 )
@@ -77,5 +78,14 @@ selected_skin_index = 2
 [node name="Tree5" parent="Nature" instance=ExtResource( 5 )]
 position = Vector2( 636, 92 )
 selected_skin_index = 2
+
+[node name="OilSpill" parent="." instance=ExtResource( 6 )]
+position = Vector2( 389, 113 )
+
+[node name="OilSpill2" parent="." instance=ExtResource( 6 )]
+position = Vector2( 428, 111 )
+
+[node name="OilSpill3" parent="." instance=ExtResource( 6 )]
+position = Vector2( 410, 135 )
 
 [editable path="Crate2"]

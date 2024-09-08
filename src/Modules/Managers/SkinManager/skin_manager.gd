@@ -95,7 +95,6 @@ func set_sprite_texture(sprite: Sprite) -> void:
 	sprite.set_texture(selected_texture)
 
 func get_sprite_texture() -> Texture:
-	print(selected_texture)
 	_load_texture()
 	return selected_texture;
 

@@ -7,6 +7,7 @@ var _view: PlayerBase
 var _model: PlayerModel
 
 var _common: CommonPlayer = CommonPlayer.new()
+var oil_utils: OilUtils = OilUtils.new()
 
 var _self_ref: String
 
@@ -48,7 +49,11 @@ func on_move() -> void:
 
 	_acceleration = lerp(_acceleration, _model.MAX_SPEED * direction_value, .03)
 	
-	var _linear_velocity: Vector2 = _view.move_and_slide(Vector2(cos(_view.rotation), sin(_view.rotation)) * _acceleration)
+	var variation_velocity: float = 1
+	if (_view.get_tree().get_nodes_in_group(oil_utils.get_named_group_schema(str(_view)))):
+		variation_velocity = .3
+	
+	var _linear_velocity: Vector2 = _view.move_and_slide(Vector2(cos(_view.rotation), sin(_view.rotation)) * _acceleration * variation_velocity)
 	
 	_add_travel(_linear_velocity)
 	
