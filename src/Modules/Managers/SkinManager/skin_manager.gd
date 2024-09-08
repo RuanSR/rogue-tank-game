@@ -1,5 +1,5 @@
-class_name SkinManager
-extends Node2D
+tool
+class_name SkinManager extends Node2D
 
 export var file_extension: String = ".png" setget set_file_extension
 export var _default_texture: Texture
@@ -13,8 +13,15 @@ var selected_texture_name: String
 var _list_of_paths: Array = []
 var _list_of_name_textures: Array = []
 
-
 func _ready():
+	_get_parent_path_skins()
+	_get_parent_selected_skin_index()
+	_dynamic_load_skins(path_skins)
+	
+	_set_selected_texture()
+	_set_selected_texture_name()
+
+func _load_texture() -> void:
 	_get_parent_path_skins()
 	_get_parent_selected_skin_index()
 	_dynamic_load_skins(path_skins)
@@ -88,4 +95,8 @@ func set_sprite_texture(sprite: Sprite) -> void:
 	sprite.set_texture(selected_texture)
 
 func get_sprite_texture() -> Texture:
+	_load_texture()
 	return selected_texture;
+
+func set_index_of_texture():
+	_load_texture()
